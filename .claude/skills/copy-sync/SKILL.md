@@ -26,15 +26,20 @@ Locate it with the Google Drive tools, then read it with `read_file_content`:
 - List its contents: `search_files` with `parentId = '<that folder id>'`, and
   pick `WebsiteCopy`.
 
-No file id is recorded here yet — **once you resolve it, add it to this file**
-so later runs can skip the search. If the search returns nothing, the doc has
+**File id:** `1-jt17fzBTwZtuDWVi16OMzBzrRmrDRffYhVUFIwnTrI` (folder id
+`1fHIuvnsQtyk44SSrrsVqiH9DBxYFg5Tf`) — read it directly; search only if that
+fails. If the search returns nothing, the doc has
 not been shared with the connected Drive account; tell the user rather than
 guessing at another file.
 
 ## 2. Doc section → target mapping
 
-The site is **one page**, composed by `make` from partials in `ui/comps/`. Each
-top-level section of the doc maps to one partial:
+The site has **two pages**, composed by `make` from partials in `ui/comps/`:
+home (`ui/layout.html` → `index.html`) and about (`ui/layout-about.html` →
+`about.html`). Each doc section carries a `Page:` field — `home`, `about`, or
+`all` (header/footer) — saying which layout includes its partial. If a section's
+`Page:` changes, move its token between the two layouts. Each top-level section
+of the doc maps to one partial:
 
 | Doc section | Target |
 |---|---|
@@ -45,10 +50,11 @@ top-level section of the doc maps to one partial:
 | what makes us different | `ui/comps/different.html` |
 | about | `ui/comps/about.html` (`id="about"`) |
 | founder | `ui/comps/founder.html` |
+| book | `ui/comps/book.html` (`id="book"`, about page) |
 | contact | `ui/comps/contact.html` (`id="contact"`) |
 | footer | `ui/comps/footer.html` |
 | nav labels | `ui/comps/header.html` |
-| page title, meta description, og: tags | `ui/layout.html` |
+| page title, meta description, og: tags | `ui/layout.html`, `ui/layout-about.html` |
 
 Match a doc section to its partial by its heading and eyebrow text — each
 section carries a `.eyebrow` line (`Our Purpose Statement`, `Upcoming Workshop`,
