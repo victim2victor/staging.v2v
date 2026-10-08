@@ -20,6 +20,18 @@
     });
 })();
 
+/* ---- Cross-page links ----
+   The header and footer are shared by index.html and about.html, so their
+   home-page links are written as index.html#section. On the home page itself,
+   trim them to plain #section so they scroll instead of reloading. */
+(function localiseHomeLinks() {
+    if (!document.getElementById("top")) return;   // only the home page has the hero
+    var links = document.querySelectorAll('a[href^="index.html"]');
+    for (var i = 0; i < links.length; i++) {
+        links[i].setAttribute("href", links[i].getAttribute("href").replace("index.html", "") || "#top");
+    }
+})();
+
 /* ---- Contact forms ----
    Two builds, one source (the unframe online/offline split):
    - online (stg/prd): submissions are inserted into Supabase via its REST

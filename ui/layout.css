@@ -164,6 +164,17 @@ p  { margin: 0 0 1.1rem; color: var(--ink-soft); }
 .prose p:last-child { margin-bottom: 0; }
 
 /* ============================================================
+   Book (about page)
+   ============================================================ */
+.book { align-items: start; }
+.book .split__media { position: sticky; top: 100px; }
+.book-list { padding-left: 1.2em; margin: 0 0 1.2em; }
+.book-list li { margin-bottom: .6em; color: var(--ink-soft); }
+@media (max-width: 820px) {
+    .book .split__media { position: static; max-width: 420px; margin-inline: auto; }
+}
+
+/* ============================================================
    Testimonials
    ============================================================ */
 .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }

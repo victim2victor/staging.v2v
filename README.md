@@ -40,27 +40,36 @@ Makefile                     build targets (dev, clean)
 make/web.map                 token → file mapping for the composer
 make/tpl.mk                  the unframe compose macro (vendored)
 ui/
-  layout.html                page shell with composer tokens
+  layout.html                home page shell (→ dist/index.html) with composer tokens
+  layout-about.html          about page shell (→ dist/about.html)
   layout.css                 the whole design system (palette, type, components)
   layout.js                  mobile nav toggle + contact-form handler
   comps/                     one file per page section
     header.html  hero.html  purpose.html  workshop.html  testimonials.html
-    different.html  about.html  founder.html  contact.html  footer.html
+    different.html  about.html  founder.html  book.html  contact.html  footer.html
   img/                       images (logo, hero, workshop, about, partner logo)
   dist/                      generated single-file build (git-ignored)
 .github/workflows/pages.yml  builds + publishes ui/dist on every push to main
 ```
 
 Adding or changing a section = edit/add a file in `ui/comps/`, add its token to
-`ui/layout.html` and a `token:path` line to `make/web.map`, then `make dev`.
+the page's layout (`ui/layout.html` or `ui/layout-about.html`) and a `token:path`
+line to `make/web.map`, then `make dev`.
+
+The header and footer are shared by both pages, so their links to home-page
+sections are written as `index.html#section`; `layout.js` trims them to plain
+`#section` on the home page so they scroll instead of reloading.
 
 ## Content sections
 
-Single-page site, in order: **hero** (Join the Journey) · **purpose** (Isaiah 58:12
-purpose statement) · **workshop** (Overcoming Childhood Trauma) · **testimonials**
-(Gordon, Danfred, Leonard) · **what makes us different** (five feature cards) ·
-**about Victim2Victor** · **about Stefan Ehlers** (founder) · **contact** (details +
-two forms) · **footer**.
+Two pages, sharing the header and footer.
+
+- **Home** (`index.html`), in order: **hero** (Join the Journey) · **purpose**
+  (Isaiah 58:12 purpose statement) · **workshop** (Overcoming Childhood Trauma) ·
+  **testimonials** (Gordon, Danfred, Leonard) · **what makes us different** (five
+  feature cards) · **contact** (details + two forms).
+- **About** (`about.html`), in order: **about Victim2Victor** · **about Stefan
+  Ehlers** (founder) · **book** (The Weight of Silence).
 
 ## Design tokens
 
