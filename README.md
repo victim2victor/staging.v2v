@@ -212,8 +212,8 @@ branches on `github.repository`:
 
 | Repo | Ref | Result |
 |---|---|---|
-| `victim2victor/staging` | any branch | `make stg` (online, env=staging) → staging Pages site |
-| `victim2victor/staging` | `main` | `make stg` → staging Pages, then promote to production |
+| `victim2victor/staging.v2v` | any branch | `make stg` (online, env=staging) → staging Pages site |
+| `victim2victor/staging.v2v` | `main` | `make stg` → staging Pages, then promote to production |
 | `victim2victor/victim2victor.github.io` | `main` | `make prd` (online, env=production) → production Pages site |
 | `victim2victor/victim2victor.github.io` | other | `make prd` build-check only, no deploy |
 

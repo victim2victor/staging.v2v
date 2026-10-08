@@ -7,7 +7,7 @@ name: Deploy to GitHub Pages
 #     - main            → build, deploy to the production Pages site
 #     - other branches  → build-check only, never deploys
 #
-#   victim2victor/staging              (STAGING)
+#   victim2victor/staging.v2v          (STAGING)
 #     - any branch      → build, deploy to the staging Pages site
 #     - main            → additionally promote: push HEAD to the production
 #                         repo's main, which triggers the production deploy
@@ -70,7 +70,7 @@ jobs:
 
   # STAGING repo, any branch → deploy to the staging Pages site.
   deploy-staging:
-    if: github.repository == 'victim2victor/staging'
+    if: github.repository == 'victim2victor/staging.v2v'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -101,7 +101,7 @@ jobs:
   # The push is a plain fast-forward; it will be rejected (not forced) if the
   # histories have diverged, which is a deliberate safety signal.
   promote-prod:
-    if: github.repository == 'victim2victor/staging' && github.ref == 'refs/heads/main'
+    if: github.repository == 'victim2victor/staging.v2v' && github.ref == 'refs/heads/main'
     needs: deploy-staging
     runs-on: ubuntu-latest
     steps:
